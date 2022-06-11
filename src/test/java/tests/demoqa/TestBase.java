@@ -6,6 +6,7 @@ import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class TestBase {
 
@@ -19,6 +20,15 @@ public class TestBase {
         Configuration.baseUrl = "https://demoqa.com"; // Задать базовый УРЛ.
         Configuration.browserSize = "1920x1080"; // задать желаемый размер экрана.
         Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub"; // путь запуска
+
+        // копипаста для подключения видео отчётов.
+        DesiredCapabilities capabilities = new DesiredCapabilities(); // capabilities - ключи и значения
+        capabilities.setCapability("enableVNC", true); // enableVNC ключ его значение true
+        capabilities.setCapability("enableVideo", true); // enableVideo - ключ его значение true
+        Configuration.browserCapabilities = capabilities;
+        // EnableVideo - делать записи или нет
+        // EnableVNC - транслировать ui или нет. т.е установив false не будет видно окна с тем что происходит.
+
     }
 
     @AfterEach
@@ -26,6 +36,7 @@ public class TestBase {
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         Attach.browserConsoleLogs();
+        Attach.addVideo();
     }
 
 
