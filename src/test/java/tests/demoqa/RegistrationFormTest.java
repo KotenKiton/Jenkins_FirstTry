@@ -1,7 +1,6 @@
 package tests.demoqa;
 
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
@@ -12,18 +11,12 @@ import static io.qameta.allure.Allure.step;
 
 
 @Tag("demoqa") // тэг для запуска отдельно этого класса из грэдла
-public class RegistrationFormTest {
+public class RegistrationFormTest extends TestBase {
 
-    @BeforeAll
-    static void setUp() {
-        Configuration.holdBrowserOpen = true; // браузер не будет закрываться после тестов.
-        Configuration.baseUrl = "https://demoqa.com"; // Задать базовый УРЛ.
-        Configuration.browserSize = "1920x1080"; // задать желаемый размер экрана.
-    }
-
-    @Test
+    @Test // Аннотация тест всегда ставить наверх
+    @DisplayName("Successful fill registration test") // всегда вниз
     void fillFormTest() {
-        // Подготовка.
+
         step("Open registration form", () -> {
             open("/automation-practice-form");
             $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
