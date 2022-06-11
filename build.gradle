@@ -49,7 +49,8 @@ tasks.withType(Test) {
         }
     }
 }
-
+// gradle clean demoqa_tests запустит только этот тест из терминала.
+// Вот это сделан отдельный класс под тегом demoqa
 task demoqa_tests(type: Test) {
     useJUnitPlatform{
         includeTags "demoqa"
