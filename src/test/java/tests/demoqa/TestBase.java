@@ -18,7 +18,6 @@ public class TestBase {
 
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
-        Configuration.holdBrowserOpen = true; // браузер не будет закрываться после тестов.
         Configuration.baseUrl = "https://demoqa.com"; // Задать базовый УРЛ.
         Configuration.browserSize = "1920x1080"; // задать желаемый размер экрана.
         Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub"; // путь запуска
@@ -30,7 +29,6 @@ public class TestBase {
         Configuration.browserCapabilities = capabilities;
         // EnableVideo - делать записи или нет
         // EnableVNC - транслировать ui или нет. т.е установив false не будет видно окна с тем что происходит.
-
     }
 
     @AfterEach
